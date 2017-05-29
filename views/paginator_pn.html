@@ -1,0 +1,17 @@
+{{if gt .paginator.PageNums 1}}
+<ul class="pager">
+    {{if .paginator.HasPrev}}
+        <li class="previous"><a href="{{.paginator.PageLinkPrev}}">上一页</a></li>
+    {{else}}
+        <li class="previous disabled"><a>上一页</a></li>
+    {{end}}
+    <li class="pager-nums">
+        {{.paginator.Page}} / {{.paginator.PageNums}}
+    </li>
+    {{if .paginator.HasNext}}
+        <li class="next"><a href="{{.paginator.PageLinkNext}}">下一页</a></li>
+    {{else}}
+        <li class="next disabled"><a>下一页</a></li>
+    {{end}}
+</ul>
+{{end}}

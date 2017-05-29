@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <title>Login</title>
+</head>
+
+<body>
+   
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h2 id="tables-hover-rows">鼠标悬停</h2>
+                <p>通过添加 <code>.table-hover</code> 类可以让 <code>&lt;tbody&gt;</code> 中的每一行对鼠标悬停状态作出响应。---分类测试</p>
+                <div class="bs-example" data-example-id="hoverable-table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nick Name</th>
+                                <th>Sex</th>
+                                <th>E-Mail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ range .allp}}
+                            <tr>
+                                <th scope="row">{{.Pid}}</th>
+                                <td>{{.NickName}}</td>
+                                <td>{{.UserSex}}</td>
+                                <td>{{.UserEmail}}</td>
+                            </tr>
+                            {{end}}
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /example -->
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+    </div>
+
+
+
+
+
+</body>
+<script type="text/javascript" src="/static/bootstrap-paginator/build/bootstrap-paginator.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#page").bootstrapPaginator({
+            currentPage: '{{.Page.PageNo}}',
+            totalPages: '{{.Page.TotalPage}}',
+            bootstrapMajorVersion: 3,
+            size: "small",
+            onPageClicked: function (e, originalEvent, type, page) {
+                window.location.href = "/?p=" + page
+            }
+        });
+    });
+
+</script>
+
+</html>

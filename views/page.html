@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <button onclick="Userinfo.download()" class="btn btn-success btn-sm" title="下载信息">
+                    <span class="icon-wrench">下载用户信息</span>
+                </button>
+
+
+                <!--upload-->
+                
+             
+
+            </div>
+            <div class="col-md-8">
+                <h2 id="tables-hover-rows">鼠标悬停</h2>
+                <p>通过添加 <code>.table-hover</code> 类可以让 <code>&lt;tbody&gt;</code> 中的每一行对鼠标悬停状态作出响应。---分类测试</p>
+                <div class="bs-example" data-example-id="hoverable-table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nick Name</th>
+                                <th>Sex</th>
+                                <th>E-Mail</th>
+                            </tr>
+                        </thead>
+                        {{if .Allp}}
+                        <tbody>
+                            {{ range .Allp}}
+                            <tr>
+                                <th scope="row">{{.Pid}}</th>
+                                <td>{{.NickName}}</td>
+                                <td>{{.UserSex}}</td>
+                                <td>{{.UserEmail}}</td>
+                            </tr>
+                            {{end}}
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /example -->
+
+
+
+
+
+                <div class="cell last low">
+                    {{template "paginator.html" .}}
+                </div>
+                {{else}}
+                <div class="cell last">
+                    这是一个懒惰的家伙.
+                </div>
+                {{end}}
+
+
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="/static/js/download.js"></script>
+    
+    <script type="text/javascript">
+        var Userinfo = {
+            download: function () {
+                var x = new XMLHttpRequest();
+                x.open("GET", "/user/download", true);
+                x.responseType = 'blob';
+                x.onload = function (e) {
+                    download(x.response, "用户信息.xlsx", "application/vnd.ms-excel");
+                }
+                x.send();
+            }
+        };
+    </script>
+
+</body>
+
+
+</html>
